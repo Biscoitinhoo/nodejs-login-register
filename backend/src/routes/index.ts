@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import registerRoutes from "../routes/register/register.routes";
 
 const routes = Router();
