@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from "typeorm";
-import User from "../../model/User";
+import User from "../../domain/model/User";
 
 @EntityRepository(User)
 class UserRepository extends Repository<User> {
@@ -7,7 +7,6 @@ class UserRepository extends Repository<User> {
     const findUserByName = await this.findOne({
       where: { name },
     });
-    /* return the user if find it, otherwise will return null */
     return findUserByName || null;
   }
 }

@@ -18,6 +18,9 @@ class User {
   lastName: string;
 
   @Column("varchar")
+  email: string;
+
+  @Column("varchar")
   password: string;
 
   @Column("varchar")
