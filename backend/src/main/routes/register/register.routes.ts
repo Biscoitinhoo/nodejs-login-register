@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { getCustomRepository } from "typeorm";
 
-import UserRepository from "../../../database/repositories/UserRepository";
-import User from "../../../domain/model/User";
-import CreateUserService from "../../../presentations/controller/login/signup/CreateUserController";
+import UserRepository from "../../../database/repositories/user-repository";
+import User from "../../../domain/model/user";
+import CreateUserController from "../../../view/controllers/login/signup/create-user-controller";
 
 const usersRouter = Router();
 
@@ -17,21 +17,21 @@ usersRouter.get("/", async (request, response) => {
 
 usersRouter.post("/", async (request, response) => {
   try {
-    const userService = new CreateUserService();
+    const userController = new CreateUserController();
 
     const user = new User();
     setUserProperties(request.body, user);
 
-    const savedUser = await userService.addUserInDatabase(user);
-    /* returning the saved user */
+    const savedUser = await userController.addUserInDatabase(user);
+
     return response.json(savedUser);
   } catch (err) {
     return response.status(400).json({ error: err.message });
   }
 });
+
 /* TODO: refactor request type */
 async function setUserProperties(request: any, user: User) {
-  /* get the request with user properties and set all the datas */
   user.firstName = request.firstName;
   user.lastName = request.lastName;
   user.email = request.email;

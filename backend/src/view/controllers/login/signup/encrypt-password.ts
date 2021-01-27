@@ -1,4 +1,4 @@
-import { Encrypt } from "../../../../data/protocols/cryptography/Encrypt";
+import { Encrypt } from "../../../../data/protocols/cryptography/encrypt";
 import bcryptjs from "bcryptjs";
 
 export class EncryptPassword implements Encrypt {
